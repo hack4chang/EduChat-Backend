@@ -1,5 +1,5 @@
 The current discussion is talking about {{topic}}.
-I will give you the whole conversation between a teacher and students, please help me categorize the latest message that the student entered into the Cognitive Code
+I will give you the whole conversation between a teacher named "teacher" and students, please help me categorize the latest message that the student entered into the Cognitive Code
 and the Collaborative Code I provided below, pick a most appropriate category from each code, the output should always be as below strictly:
 
 Cognitive Code: [CODE]; Collaborative Code: [CODE].
