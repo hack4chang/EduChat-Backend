@@ -9,7 +9,7 @@ const openai = new OpenAI({
 });
 
 const { Worker } = require('worker_threads');
-const { MessageFilesPage } = require("openai/resources/beta/threads/messages/files.mjs");
+// const { MessageFilesPage } = require("openai/resources/beta/threads/messages/files.mjs");
 
 class WorkerManager {
     constructor() {
@@ -153,6 +153,11 @@ class Chatbot {
                 messages: this.classificationMessages,
                 model: "gpt-3.5-turbo-1106"
             });
+
+            // Use the latest K messages to classify
+            while ( this.classificationMessages.length > 4 ) {
+                this.classificationMessages.splice(1, 1);
+            }
 
             const classificationResult = classificationResponse.choices[0].message.content.trim();
             console.log(`\n\nClassification result for "${message}": ${classificationResult}\n\n`);
