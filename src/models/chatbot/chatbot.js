@@ -150,9 +150,10 @@ class Chatbot {
         try {
 
             // Use the latest K messages to classify
-            while ( this.classificationMessages.length > 4 ) {
+            while ( this.classificationMessages.length > 11 ) {
                 this.classificationMessages.splice(1, 1);
             }
+            
 
             const classificationResponse = await openai.chat.completions.create({
                 messages: this.classificationMessages,
@@ -161,6 +162,8 @@ class Chatbot {
 
             const classificationResult = classificationResponse.choices[0].message.content.trim();
             console.log(`\n\nClassification result for "${message}": ${classificationResult}\n\n`);
+
+            this.classificationMessages.push({role: "assistant", content: classificationResult});
             const resultDict = {}, regex = /(\w+ Code): \[([^\]]+)\]/g;
             let match;
             while ((match = regex.exec(classificationResult)) !== null) {
