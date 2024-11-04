@@ -5,7 +5,7 @@ let countdownTimer = null;
 let currentMessageId = null;
 
 async function handleCategory({cognitive_code, collaborative_code, messageId}){
-
+    
     try{
         if (countdownTimer){
             clearTimeout(countdownTimer);
