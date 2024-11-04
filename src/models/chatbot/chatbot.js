@@ -149,15 +149,15 @@ class Chatbot {
 
         try {
 
-            const classificationResponse = await openai.chat.completions.create({
-                messages: this.classificationMessages,
-                model: "gpt-3.5-turbo-1106"
-            });
-
             // Use the latest K messages to classify
             while ( this.classificationMessages.length > 4 ) {
                 this.classificationMessages.splice(1, 1);
             }
+
+            const classificationResponse = await openai.chat.completions.create({
+                messages: this.classificationMessages,
+                model: "gpt-3.5-turbo-1106"
+            });
 
             const classificationResult = classificationResponse.choices[0].message.content.trim();
             console.log(`\n\nClassification result for "${message}": ${classificationResult}\n\n`);
